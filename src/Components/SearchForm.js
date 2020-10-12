@@ -13,6 +13,9 @@ class SearchForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        let searchQuery = this.state.searchText.value;
+        let path = `search/${searchQuery}`;
+        
         e.currentTarget.reset();
     }
 
@@ -22,7 +25,8 @@ class SearchForm extends Component {
                 <input type="search"
                         onChange={this.onSearchChange}
                         name="search"
-                        placeholder="Search flikr...." />
+                        placeholder="Search flikr...."
+                        ref={ (input) => this.state.searchQuery = input} />
                 <button type="submit" id="submit" className="search-button">Search</button>
             </form>
         );

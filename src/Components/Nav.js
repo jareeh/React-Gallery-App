@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink, BrowserRouter } from 'react-router-dom';
-import PhotoList from './PhotoList';
 
 const Nav = () => {
     return (
