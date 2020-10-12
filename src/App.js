@@ -66,7 +66,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <h1>Jeff's React Gallery App</h1>
-          <SearchForm />
+          <SearchForm onSearch={this.performSearch} />
           <Nav />
           {/* <PhotoList /> */}
             <Switch>
@@ -74,7 +74,7 @@ class App extends Component {
               <Route path="/landscapes" render={ () => <PhotoList data={this.state.landscapes}/> } />
               <Route path="/forests" render={ () => <PhotoList data={this.state.forests}/> } />
               <Route path="/beaches" render={ () => <PhotoList data={this.state.beaches}/> } />
-              <Route path="/:query" render={ () => <PhotoList data={this.state.photos}/> } />
+              <Route path="/search/:query" render={ () => <PhotoList data={this.state.photos}/> } />
               <Route component={NotFound}/>
             </Switch>
         </div>
