@@ -17,7 +17,6 @@ class PhotoList extends Component{
         return (
             <div className="photo-container">
                 <h2>Results</h2>
-                <p>Here is where the photo grid will go.</p>
                 <ul>
                     {photos}
                 </ul>
