@@ -6,8 +6,8 @@ import axios from 'axios';
 import './App.css';
 import SearchForm from './Components/SearchForm';
 import Nav from './Components/Nav';
-import NotFound from './Components/NotFound'
 import PhotoList from './Components/PhotoList';
+import Error from './Components/Error';
 
 import apiKey from './config';
 
@@ -82,7 +82,7 @@ class App extends Component {
                 <Route path="/search/forests" render={ () => <Redirect to ="/forests" /> } />
                 <Route path="/search/beaches" render={ () => <Redirect to ="/beaches" /> } />
                 <Route path="/search/:query" render={ () => <PhotoList data={this.state.photos}/> } />
-                <Route component={NotFound}/>
+                <Route component={Error}/>
               </Switch>
           }
         </div>
