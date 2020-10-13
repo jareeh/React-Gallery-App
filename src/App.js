@@ -18,19 +18,19 @@ class App extends Component {
       photos: [],
       landscapes: [],
       forests: [],
-      beaches: [],
+      rivers: [],
     };
 
   componentDidMount(){
     this.performSearch()
     this.performSearch('forests')
-    this.performSearch('beaches')
+    this.performSearch('rivers')
   }
 
   //Search handling method
   performSearch = (query = 'landscapes') => {
     this.setState({ loading:true });
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=25&format=json&nojsoncallback=1`)
       .then(response => {
 
         if(query === 'landscapes'){
@@ -45,9 +45,9 @@ class App extends Component {
             loading: false
           })
 
-        } else if (query === 'beaches'){
+        } else if (query === 'rivers'){
           this.setState({
-            beaches: response.data.photos.photo,
+            rivers: response.data.photos.photo,
             loading: false
           })
 
@@ -65,7 +65,7 @@ class App extends Component {
   
   render(){
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/react-gallery-app-V2">
         <div>
           <h1>Jeff's React Gallery App</h1>
           <SearchForm onSearch={this.performSearch} />
@@ -77,10 +77,10 @@ class App extends Component {
                 <Route exact path="/" render={ () => <Redirect to ="/landscapes" /> } />
                 <Route path="/landscapes" render={ () => <PhotoList data={this.state.landscapes}/> } />
                 <Route path="/forests" render={ () => <PhotoList data={this.state.forests}/> } />
-                <Route path="/beaches" render={ () => <PhotoList data={this.state.beaches}/> } />
+                <Route path="/rivers" render={ () => <PhotoList data={this.state.rivers}/> } />
                 <Route path="/search/landscapes" render={ () => <Redirect to ="/landscapes" /> } />
                 <Route path="/search/forests" render={ () => <Redirect to ="/forests" /> } />
-                <Route path="/search/beaches" render={ () => <Redirect to ="/beaches" /> } />
+                <Route path="/search/rivers" render={ () => <Redirect to ="/rivers" /> } />
                 <Route path="/search/:query" render={ () => <PhotoList data={this.state.photos}/> } />
                 <Route component={Error}/>
               </Switch>
